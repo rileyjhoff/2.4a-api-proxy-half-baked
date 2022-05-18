@@ -16,10 +16,11 @@ export default function WeatherSearch() {
     // use fetch to make a request to your netlify weather function. Be sure to pass the location as a query param in the URL
     const weatherData = await getWeatherData(search);
     // put the jsonified data in state and set the loading state to false
-    console.log(weatherData);
-    setWeatherList(weatherData);
+    setWeatherList(weatherData.data.daily);
     setIsLoading(false);
   }
+
+  console.log(weatherList);
 
   return (
     <section className="weather">
@@ -54,7 +55,7 @@ export default function WeatherSearch() {
         <button>Get Weather</button>
       </form>
       {/* Make a ForecastList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
-      {isLoading ? <LoadingScreen /> : <ForecastList />}
+      {isLoading ? <LoadingScreen /> : <ForecastList weatherList={weatherList} />}
     </section>
   );
 }
