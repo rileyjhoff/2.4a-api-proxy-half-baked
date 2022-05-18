@@ -19,7 +19,6 @@ export default function YelpSearch() {
     setBusinessList(yelpData.data.businesses);
     setIsLoading(false);
   }
-  console.log(businessList);
 
   return (
     <section className="yelp">
@@ -30,6 +29,7 @@ export default function YelpSearch() {
         <label>
           City:{' '}
           <input
+            required
             value={search.city}
             onChange={(e) => setSearch({ ...search, city: e.target.value })}
           />
@@ -37,6 +37,7 @@ export default function YelpSearch() {
         <label>
           State:{' '}
           <input
+            required
             value={search.state}
             onChange={(e) => setSearch({ ...search, state: e.target.value })}
           />
@@ -44,6 +45,7 @@ export default function YelpSearch() {
         <label>
           Country:{' '}
           <input
+            required
             value={search.country}
             onChange={(e) => setSearch({ ...search, country: e.target.value })}
           />

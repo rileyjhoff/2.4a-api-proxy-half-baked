@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getWeatherData } from '../services/fetch-utils';
+import ForecastList from './ForecastList';
 import LoadingScreen from './LoadingScreen';
 
 export default function WeatherSearch() {
@@ -15,13 +16,13 @@ export default function WeatherSearch() {
     // use fetch to make a request to your netlify weather function. Be sure to pass the location as a query param in the URL
     const weatherData = await getWeatherData(search);
     // put the jsonified data in state and set the loading state to false
+    console.log(weatherData);
     setWeatherList(weatherData);
     setIsLoading(false);
   }
 
   return (
     <section className="weather">
-      {isLoading && <LoadingScreen />}
       {/* make the fetch on submit */}
       <form onSubmit={handleWeatherSubmit}>
         Search weather for a city
@@ -29,6 +30,7 @@ export default function WeatherSearch() {
         <label>
           City:{' '}
           <input
+            required
             value={search.city}
             onChange={(e) => setSearch({ ...search, city: e.target.value })}
           />
@@ -36,6 +38,7 @@ export default function WeatherSearch() {
         <label>
           State:{' '}
           <input
+            required
             value={search.state}
             onChange={(e) => setSearch({ ...search, state: e.target.value })}
           />
@@ -43,6 +46,7 @@ export default function WeatherSearch() {
         <label>
           Country:{' '}
           <input
+            required
             value={search.country}
             onChange={(e) => setSearch({ ...search, country: e.target.value })}
           />
@@ -50,6 +54,7 @@ export default function WeatherSearch() {
         <button>Get Weather</button>
       </form>
       {/* Make a ForecastList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {isLoading ? <LoadingScreen /> : <ForecastList />}
     </section>
   );
 }
