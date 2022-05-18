@@ -16,7 +16,7 @@ export async function getYelpData(search) {
 
 export async function getWeatherData(search) {
   const rawResponse = await fetch(
-    `/.netlify/functions/weather?search=${search.city + ' ' + search.state + ' ' + search.country}`
+    `/.netlify/functions/weather?search=${search.city + ',' + search.state + ',' + search.country}`
   );
   const data = await rawResponse.json();
 

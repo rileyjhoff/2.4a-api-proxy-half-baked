@@ -19,12 +19,26 @@ exports.handler = async (event, context) => {
 
     // once you have gotten the lat/lon using the geocoding api, use the lat/lon to get the weather. Consult the docs below:
     // https://openweathermap.org/api/one-call-api
+    const coordinates = await fetch(
+      `http://api.openweathermap.org/geo/1.0/direct?q=${event.queryStringParameters.search}&appid=${process.env.WEATHER_KEY}`
+    );
+
+    const coordinatesData = await coordinates.json();
+
+    const lat = coordinatesData[0].lat;
+    const lon = coordinatesData[0].lon;
+
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_KEY}`
+    );
+    const data = await response.json();
+    const json = JSON.stringify({ data });
 
     return {
       statusCode: 200,
       headers,
       // this is where you shoot data back to the user. right now it's sending an empty object--replace this with the weather data. remember, you do need to stringify it, otherwise netlify gets mad. ¯\_(ツ)_/¯
-      body: JSON.stringify({}),
+      body: json,
     };
   } catch (error) {
     console.log(error);
