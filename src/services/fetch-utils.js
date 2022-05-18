@@ -6,7 +6,9 @@ export async function getPokemonData(search) {
 }
 
 export async function getYelpData(search) {
-  const rawResponse = await fetch(`/.netlify/functions/yelp?search=${search}`);
+  const rawResponse = await fetch(
+    `/.netlify/functions/yelp?search=${search.city + ' ' + search.state + ' ' + search.country}`
+  );
   const data = await rawResponse.json();
 
   return data;

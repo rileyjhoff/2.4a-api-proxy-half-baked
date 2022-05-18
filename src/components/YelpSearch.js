@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getYelpData } from '../services/fetch-utils';
+import BusinessList from './BusinessList';
 import LoadingScreen from './LoadingScreen';
 
 export default function YelpSearch() {
@@ -15,13 +16,13 @@ export default function YelpSearch() {
     // use fetch to make a request to your netlify yelp function. Be sure to pass the search query as a query param in the URL
     const yelpData = await getYelpData(search);
     // put the jsonified data in state and set the loading state to false
-    setBusinessList(yelpData);
+    setBusinessList(yelpData.data.businesses);
     setIsLoading(false);
   }
+  console.log(businessList);
 
   return (
     <section className="yelp">
-      {isLoading && <LoadingScreen />}
       {/* make the fetch on submit */}
       <form onSubmit={handleYelpSubmit}>
         Search yelp for a city
@@ -50,6 +51,7 @@ export default function YelpSearch() {
         <button>Search Yelp</button>
       </form>
       {/* Make a BusinessesList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {/* {isLoading ? <LoadingScreen /> : <BusinessList businessList={businessList} />} */}
     </section>
   );
 }
