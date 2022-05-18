@@ -14,14 +14,13 @@ export default function PokemonSearch() {
     setIsLoading(true);
     // use fetch to make a request to your netlify pokemon function. Be sure to pass the pokemon name as a query param in the URL
     const pokemonData = await getPokemonData(search);
+    setPokemonList(pokemonData.data.results);
     // put the jsonified data in state and set the loading state to false
-    setPokemonList(pokemonData);
     setIsLoading(false);
   }
 
   return (
     <section className="pokemon">
-      {isLoading && <LoadingScreen />}
       {/* make the fetch on submit */}
       <form onSubmit={handlePokemonSubmit}>
         Search pokemon
@@ -31,7 +30,8 @@ export default function PokemonSearch() {
         </label>
         <button>Get Pokemon</button>
       </form>
-      {/* Make a PokemonList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {/* Make a PokemonList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {isLoading && <LoadingScreen />}
     </section>
   );
 }

@@ -49,7 +49,7 @@ export default function WeatherSearch() {
         </label>
         <button>Get Weather</button>
       </form>
-      {/* Make a ForecastList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {/* Make a ForecastList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
     </section>
   );
 }

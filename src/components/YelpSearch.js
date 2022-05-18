@@ -49,7 +49,7 @@ export default function YelpSearch() {
         </label>
         <button>Search Yelp</button>
       </form>
-      {/* Make a BusinessesList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      {/* Make a BusinessesList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
     </section>
   );
 }
