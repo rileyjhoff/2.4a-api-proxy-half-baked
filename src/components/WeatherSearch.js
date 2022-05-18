@@ -20,8 +20,6 @@ export default function WeatherSearch() {
     setIsLoading(false);
   }
 
-  console.log(weatherList);
-
   return (
     <section className="weather">
       {/* make the fetch on submit */}
