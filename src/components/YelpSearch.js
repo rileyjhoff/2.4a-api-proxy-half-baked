@@ -51,7 +51,7 @@ export default function YelpSearch() {
         <button>Search Yelp</button>
       </form>
       {/* Make a BusinessesList component to import and use here. Use a ternary to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
-      {/* {isLoading ? <LoadingScreen /> : <BusinessList businessList={businessList} />} */}
+      {isLoading ? <LoadingScreen /> : <BusinessList businessList={businessList} />}
     </section>
   );
 }
