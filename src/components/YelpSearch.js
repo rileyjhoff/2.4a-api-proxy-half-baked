@@ -3,7 +3,7 @@ import { getYelpData } from '../services/fetch-utils';
 
 export default function YelpSearch() {
   // you'll need to track your yelp search results, the loading state, and a form field for location with a default value.
-  const [cityYelpData, setCityYelpData] = useState([]);
+  const [businessList, setBusinessList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState('portland');
 
@@ -14,7 +14,7 @@ export default function YelpSearch() {
     // use fetch to make a request to your netlify yelp function. Be sure to pass the search query as a query param in the URL
     const yelpData = await getYelpData(search);
     // put the jsonified data in state and set the loading state to false
-    setCityYelpData(yelpData);
+    setBusinessList(yelpData);
     setIsLoading(false);
   }
 

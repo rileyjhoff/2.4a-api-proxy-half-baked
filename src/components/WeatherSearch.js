@@ -3,7 +3,7 @@ import { getWeatherData } from '../services/fetch-utils';
 
 export default function WeatherSearch() {
   // you'll need to track your weather search results, the loading state, and a form field for location with a default value.
-  const [cityWeatherData, setCityWeatherData] = useState([]);
+  const [weatherList, setWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState('portland');
 
@@ -14,7 +14,7 @@ export default function WeatherSearch() {
     // use fetch to make a request to your netlify weather function. Be sure to pass the location as a query param in the URL
     const weatherData = await getWeatherData(search);
     // put the jsonified data in state and set the loading state to false
-    setCityWeatherData(weatherData);
+    setWeatherList(weatherData);
     setIsLoading(false);
   }
 
